@@ -12,7 +12,7 @@ pipeline {
             steps {
                 //sh './mvnw clean package'
                 //sh 'false' // true
-                sh 'false'
+                sh 'true'
             }
         
             post {
