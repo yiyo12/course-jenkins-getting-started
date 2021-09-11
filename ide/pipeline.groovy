@@ -17,10 +17,7 @@ pipeline {
             }
         
             post {
-                always {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                }
+
                 changed {
                     emailext subject: "Job \'${JOB_NAME}\' (build ${BUILD_NUMBER}) ${currentBuild.result}",
                         body: "Please go to ${BUILD_URL} and verify the build", 
@@ -29,6 +26,12 @@ pipeline {
                         to: "test@jenkins",
                         recipientProviders: [upstreamDevelopers(), requestor()]
                 }
+
+                always {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+                }
+               
             }
         }
     }
