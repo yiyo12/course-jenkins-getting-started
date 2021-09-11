@@ -20,7 +20,6 @@ pipeline {
                     archiveArtifacts 'target/*.jar'
                 }
                 changed {
-                    echo: 'her'
                     emailext subject: "Job \'${JOB_NAME}\' (build ${BUILD_NUMBER}) ${currentBuild.result}",
                         body: "Please go to ${BUILD_URL} and verify the build", 
                         attachLog: true, 
